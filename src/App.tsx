@@ -4,6 +4,7 @@ import "./App.css";
 function App() {
   const [data, setData] = useState<null | number>(null);
   const [board, setBoard] = useState<Array<null | number>>(Array(9).fill(null));
+  const initialBoardState = Array(9).fill(null);
 
   function handleClick(index: number) {
     if (board[index] == null) {
@@ -17,9 +18,19 @@ function App() {
       }
       setData(newBoard[index]);
       setBoard(newBoard);
-      console.log(data);
+      checkResult();
+    } else {
+      setData(null);
+      setBoard(initialBoardState);
     }
   }
+
+  function handleRestart() {
+    setData(null);
+    setBoard(initialBoardState);
+  }
+
+  function checkResult() {}
 
   return (
     <div className="App flex flex-col items-center justify-center min-h-screen">
@@ -34,6 +45,9 @@ function App() {
             {divs}
           </ul>
         ))}
+      </div>
+      <div>
+        <button onClick={handleRestart}>Restart</button>
       </div>
     </div>
   );
