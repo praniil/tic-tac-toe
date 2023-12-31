@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -25,12 +25,48 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    console.log(board);
+  }, [board, data]);
+
+  useEffect(() => {
+    console.log(board);
+    checkResult();
+  });
+
   function handleRestart() {
     setData(null);
     setBoard(initialBoardState);
   }
 
-  function checkResult() {}
+  function checkResult() {
+    console.log(board);
+    if (
+      (board[0] === 0 && board[4] === 0 && board[8] === 0) ||
+      (board[0] === 0 && board[3] === 0 && board[6] === 0) ||
+      (board[1] === 0 && board[4] === 0 && board[7] === 0) ||
+      (board[2] === 0 && board[5] === 0 && board[8] === 0) ||
+      (board[0] === 0 && board[1] === 0 && board[2] === 0) ||
+      (board[3] === 0 && board[4] === 0 && board[5] === 0) ||
+      (board[6] === 0 && board[7] === 0 && board[8] === 0) ||
+      (board[2] === 0 && board[4] === 0 && board[6] === 0)
+    ) {
+      alert("p1");
+      handleRestart();
+    } else if (
+      (board[0] === 1 && board[4] === 1 && board[8] === 1) ||
+      (board[0] === 1 && board[3] === 1 && board[6] === 1) ||
+      (board[1] === 1 && board[4] === 1 && board[7] === 1) ||
+      (board[2] === 1 && board[5] === 1 && board[8] === 1) ||
+      (board[0] === 1 && board[1] === 1 && board[2] === 1) ||
+      (board[3] === 1 && board[4] === 1 && board[5] === 1) ||
+      (board[6] === 1 && board[7] === 1 && board[8] === 1) ||
+      (board[2] === 1 && board[4] === 1 && board[6] === 1)
+    ) {
+      alert("p2");
+      handleRestart();
+    }
+  }
 
   return (
     <div className="App flex flex-col items-center justify-center min-h-screen">
